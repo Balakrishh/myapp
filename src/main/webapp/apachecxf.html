@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>Home - My Learnings</title>
+<!-- Bootstrap Core CSS -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<!-- Custom CSS -->
+<link href="css/blog-home.css" rel="stylesheet">
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+	<!-- Navigation -->
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="index.html">Home</a>
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li><a href="#">About</a></li>
+					<li><a href="contactus.html">Contact</a></li>
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container -->
+	</nav>
+
+	<!-- Page Content -->
+	<div class="container">
+
+		<div class="row">
+
+			<!-- Blog Entries Column -->
+			<div class="col-md-8">
+
+				<!-- First Blog Post -->
+				<h2>
+					<a href="axis2.html">Axis2 Webservice</a>
+				</h2>
+				<p class="lead">
+					by <a href="index.php">Balakrishna</a>
+				</p>
+				<p>
+					<span class="glyphicon glyphicon-time"></span> Posted on December
+					17th, 2015 at 10:00 PM
+				</p>
+	<div>
+		<p> To get a Basic understanding of what is webservice and its related components please go through <a href="http://docs.oracle.com/javaee/6/tutorial/doc/gijvh.html" target="_blank">Oracle documentation</a>
+		
+			In this Example I am going to build a simple student service
+			using AXIS 1.6.2 and Maven 3.x</p>
+		<p>
+		<p>
+			I find it hard to find an archetype to generate a maven template of
+			axis2 webservice. So I went through <a href="https://axis.apache.org/axis2/java/core/docs/quickstartguide.html#introduction"
+				target="_blank">Axis2 Start Guide</a> and got the corresponding maven plugins to generate wsdl from the POJO classes
+		</p>
+		<p> Below is our student and department classes which are part of our service</p>
+		<div>
+		<pre>public class Student {
+				private String studentId;
+				private String fName;
+				private String lName;
+				private Department dept;
+				}
+			public class Department {
+				private String deptId;
+				private String deptName;
+				}</pre>
+		</div>
+		<p>Below are our service end points which are exposed in our webservice </p>
+			<div>
+		<pre>public interface StudentService {
+				public void addStudent(Student s);
+				public Student getStudent();
+				}</pre>
+		</div>
+
+	</div>
+	<div>The server side of Axis2 can be deployed on any Servlet
+		engine, and has the following structure</div>
+	<div>
+		<pre>axis2-web 
+				META-INF
+				WEB-INF
+   					classes 
+    				conf
+        				axis2.xml 
+    				lib
+        				activation.jar
+        				...
+        				xmlSchema.jar
+    				modules
+        				modules.list 
+        				addressing.mar
+        				...
+        				soapmonitor.mar
+    				services
+        				services.list
+        				aservice.aar
+				        ...
+        				version.aar
+    				web.xml</pre>
+	</div>
+	<div>
+	<p>Below is the maven plugins used for generating wsdl and creating .aar(Axis archieve file) file to publish our service in the axis2 webapp</p>
+	<pre>
+		&ltbuild&gt
+		&ltfinalName&gtStudentService&lt/finalName&gt
+		&ltplugins&gt
+			&ltplugin&gt
+				&ltgroupId&gtorg.apache.maven.plugins&lt/groupId&gt
+				&ltartifactId&gtmaven-compiler-plugin&lt/artifactId&gt
+				&ltversion&gt${maven.compiler.plugin.version}&lt/version&gt
+				&ltconfiguration&gt
+					&ltsource&gt${java.version}&lt/source&gt
+					&lttarget&gt${java.version}&lt/target&gt
+				&lt/configuration&gt
+			&lt/plugin&gt
+			&ltplugin&gt
+				&ltgroupId&gtorg.apache.axis2<&lt/groupId&gt
+				&ltartifactId&gtaxis2-java2wsdl-maven-plugin&lt/artifactId&gt
+				&ltversion&gt${axis2.version}&lt/version&gt
+				&ltexecutions&gt
+					&ltexecution&gt
+						&ltphase&gtprocess-classes&lt/phase&gt
+						&ltgoals&gt
+							&ltgoal>java2wsdl&lt/goal&gt
+						&lt/goals&gt
+					&lt/execution&gt
+				&lt/executions&gt
+				&ltconfiguration&gt
+					&ltclassName&gtcom.ss.service.StudentServiceImpl<&lt/className&gt
+					&ltoutputFileName&gt${project.build.directory}/StudentService.wsdl&lt/outputFileName&gt
+				&lt/configuration&gt
+			&lt/plugin&gt
+			&lt!-- Maven axis2 AAR plugin --&gt
+			&ltplugin&gt
+				&ltgroupId>org.apache.axis2&lt/groupId&gt
+				&ltartifactId>axis2-aar-maven-plugin&lt/artifactId&gt
+				&ltversion>${axis2.version}&lt/version&gt
+				&ltconfiguration&gt
+					&ltservicesXmlFile&gt
+						src/main/webapp/META-INF/services.xml&lt/servicesXmlFile&gt
+					&ltoutputDirectory>src/main/webapp/WEB-INF/services&lt/outputDirectory&gt
+					&ltincludeDependencies>false&lt/includeDependencies&gt
+				&lt/configuration&gt
+				&ltexecutions&gt
+					&ltexecution>&gt
+						&ltphase&gtpackage&lt/phase&gt
+						&ltgoals&gt
+							&ltgoal>aar&lt/goal&gt
+						&lt/goals
+					&lt/execution&gt
+				&lt/executions&gt
+			&lt/plugin&gt
+		&lt/plugins&gt
+		&ltresources&gt
+			&ltresource&gt
+				&ltdirectory&gttarget/generated-sources/axis2/wsdl2code/resources&lt/directory&gt
+			&lt/resource&gt
+			&ltresource&gt
+				&ltdirectory&gttarget/generated-sources/xmlbeans/resources&lt/directory&gt
+			&lt/resource>
+			&ltresource>
+				&ltdirectory&gtsrc/main/resources&lt/directory&gt
+			&lt/resource&gt
+		&lt/resources&gt
+	&lt/build&gt
+	</pre>
+	</div>
+	<div>
+		<p>Below is our service.xml which is provided in the plugin to create .aar file</p>
+		<pre>
+			&ltservice name="StudentService" scope="application"
+							targetNamespace="http://quickstart.samples/"&gt
+   				&ltdescription&gt
+       				 Student Service
+    			&lt/description&gt
+    			&ltmessageReceivers&gt
+        		&ltmessageReceiver mep="http://www.w3.org/2004/08/wsdl/in-only"
+							class="org.apache.axis2.rpc.receivers.RPCInOnlyMessageReceiver" /&gt
+        		&ltmessageReceiver mep="http://www.w3.org/2004/08/wsdl/in-out"
+							class="org.apache.axis2.rpc.receivers.RPCMessageReceiver" /&gt
+    			&lt/messageReceivers>
+    			&ltschema schemaNamespace="http://quickstart.samples/xsd" /&gt
+    			&ltparameter name="ServiceClass">com.ss.service.StudentServiceImpl&lt/parameter&gt
+			&lt/service&gt
+		</pre>
+	</div>
+	<div>
+	<a href="download.do"> Download Source here </a>
+	</div>
+				<hr>
+			</div>
+
+			<!-- Blog Sidebar Widgets Column -->
+			<div class="col-md-4">
+
+				<!-- Blog Search Well -->
+				<div class="well">
+					<h4>Blog Search</h4>
+					<div class="input-group">
+						<input type="text" class="form-control"> <span
+							class="input-group-btn">
+							<button class="btn btn-default" type="button">
+								<span class="glyphicon glyphicon-search"></span>
+							</button>
+						</span>
+					</div>
+					<!-- /.input-group -->
+				</div>
+
+				<!-- Blog Categories Well -->
+				<div class="well">
+					<h4>Blog Categories</h4>
+					<div class="row">
+						<div class="col-lg-6">
+							<ul class="list-unstyled">
+								<li><a href="#">Category Name</a></li>
+								<li><a href="#">Category Name</a></li>
+								<li><a href="#">Category Name</a></li>
+								<li><a href="#">Category Name</a></li>
+							</ul>
+						</div>
+						<!-- /.col-lg-6 -->
+						<div class="col-lg-6">
+							<ul class="list-unstyled">
+								<li><a href="#">Category Name</a></li>
+								<li><a href="#">Category Name</a></li>
+								<li><a href="#">Category Name</a></li>
+								<li><a href="#">Category Name</a></li>
+							</ul>
+						</div>
+						<!-- /.col-lg-6 -->
+					</div>
+					<!-- /.row -->
+				</div>
+			</div>
+
+		</div>
+		<!-- /.row -->
+
+		<hr>
+
+		<!-- Footer -->
+		<footer>
+			<div class="row">
+				<div class="col-lg-12">
+					<p>Copyright &copy; Your Website 2015</p>
+				</div>
+				<!-- /.col-lg-12 -->
+			</div>
+			<!-- /.row -->
+		</footer>
+
+	</div>
+	<!-- /.container -->
+
+	<!-- jQuery -->
+	<script src="js/jquery.js"></script>
+
+	<!-- Bootstrap Core JavaScript -->
+	<script src="js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

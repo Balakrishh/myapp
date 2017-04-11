@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.microsoft.com/ajax/jQuery.Validate/1.6/jQuery.Validate.min.js"></script>
+<script async
+	src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<title>Home - My Learnings</title>
+<!-- Bootstrap Core CSS -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<!-- Custom CSS -->
+<link href="css/blog-home.css" rel="stylesheet">
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+	<!-- Navigation -->
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="index.html">Home</a>
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li><a href="#">About</a></li>
+					<li><a href="#">Contact</a></li>
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container -->
+	</nav>
+	<div align="center">
+		<!-- FirstAd -->
+		<ins class="adsbygoogle"
+			style="display: inline-block; width: 728px; height: 90px"
+			data-ad-client="ca-pub-7505302101545698" data-ad-slot="2729388564"></ins>
+		<script>
+			(adsbygoogle = window.adsbygoogle || []).push({});
+		</script>
+	</div>
+	<!-- Page Content -->
+	<div class="container">
+
+		<div class="row">
+
+			<!-- Contact us -->
+			<div class="col-md-8">
+				<h2>Contact us</h2>
+				<div id="result" color=#FF0000></div>
+				<form class="form-horizontal" id="contactForm" name="contactForm"
+					method="post">
+					<div class="form-group">
+						<input id="fname" name="fname" type="text"
+							placeholder="First Name" class="form-control required">
+					</div>
+					<div class="form-group">
+						<input id="lname" name="lname" type="text" placeholder="Last Name"
+							class="form-control required">
+					</div>
+
+					<div class="form-group">
+						<input id="email" name="email" type="text"
+							placeholder="Email Address" class="form-control">
+					</div>
+
+					<div class="form-group">
+						<input id="phone" name="phone" type="text" placeholder="Phone"
+							class="form-control">
+					</div>
+
+					<div class="form-group">
+						<textarea class="form-control" id="message" name="message"
+							placeholder="Enter your massage for us here. We will get back to you within 2 business days."
+							rows="7"></textarea>
+					</div>
+					<input type="button" value="Submit"
+						onclick="madeAjaxCall();">
+				</form>
+			</div>
+
+
+
+			<!-- Blog Sidebar Widgets Column -->
+			<div class="col-md-4">
+
+				<!-- Blog Search Well -->
+				<div class="well">
+					<h4>Blog Search</h4>
+					<div class="input-group">
+						<input type="text" class="form-control"> <span
+							class="input-group-btn">
+							<button class="btn btn-default" type="button">
+								<span class="glyphicon glyphicon-search"></span>
+							</button>
+						</span>
+					</div>
+					<!-- /.input-group -->
+				</div>
+
+				<!-- Blog Categories Well -->
+				<div class="well">
+					<h4>Blog Categories</h4>
+					<div class="row">
+						<div class="col-lg-6">
+							<ul class="list-unstyled">
+								<li><a href="#">Category Name</a></li>
+								<li><a href="#">Category Name</a></li>
+								<li><a href="#">Category Name</a></li>
+								<li><a href="#">Category Name</a></li>
+							</ul>
+						</div>
+						<!-- /.col-lg-6 -->
+						<div class="col-lg-6">
+							<ul class="list-unstyled">
+								<li><a href="#">Category Name</a></li>
+								<li><a href="#">Category Name</a></li>
+								<li><a href="#">Category Name</a></li>
+								<li><a href="#">Category Name</a></li>
+							</ul>
+						</div>
+						<!-- /.col-lg-6 -->
+					</div>
+					<!-- /.row -->
+				</div>
+
+				<!-- Side Widget Well -->
+				<div class="well">
+					<h4>Side Widget Well</h4>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+						Inventore, perspiciatis adipisci accusamus laudantium odit aliquam
+						repellat tempore quos aspernatur vero.</p>
+				</div>
+
+			</div>
+
+		</div>
+		<!-- /.row -->
+
+		<hr>
+
+		<!-- Footer -->
+		<footer>
+			<div class="row">
+				<div class="col-lg-12">
+					<p>Copyright &copy; Your Website 2014</p>
+				</div>
+				<!-- /.col-lg-12 -->
+			</div>
+			<!-- /.row -->
+		</footer>
+
+	</div>
+	<!-- /.container -->
+
+	<!-- jQuery -->
+	<script src="js/jquery.js"></script>
+
+	<!-- Bootstrap Core JavaScript -->
+	<script src="js/bootstrap.min.js"></script>
+
+
+	<script type="text/javascript">
+		function madeAjaxCall() {
+					var formData = {}
+					formData["fname"] = $("#fname").val();
+					formData["lname"] = $("#lname").val();
+					formData["email"] = $("#email").val();
+					formData["message"] = $("#message").val();
+					console.log(formData);
+			console.log("in Ajax method");
+			$.ajax({
+				type : 'post',
+				url : "contactme",
+				data : JSON.stringify(formData),
+				contentType : "application/json", 
+				dataType : 'text',
+				success : function(response) {
+					$('#result').html("");
+					var obj = response;
+					$('#result').html(obj); 
+					$('#contactForm')[0].reset();
+					console.log("result:" + response);
+				},
+				error : function() {
+					alert('Error while request..');
+				},
+			});
+		};
+	</script>
+	<script type="text/javascript">
+		function validateForm() {
+			$("#contactForm").validate({
+				rules : {
+					fname : "required",
+					lname : {
+						required : true
+					},
+					message : {
+						required : true,
+						date : true
+					},
+					email : {
+						required : true,
+						email : true
+					}
+				},
+				messages : {
+					fname : "Please enter your first name",
+					lname : "Please enter your last name",
+					message : "Please enter your date of birth",
+					email : {
+						required : "Please enter your email",
+						email : "Please enter a valid email address"
+					}
+				}
+			});
+		};
+	</script>
+
+</body>
+
+</html>

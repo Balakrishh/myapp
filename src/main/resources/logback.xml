@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<property name="DEV_HOME" value="/ApplicationLogs/StudentApplication" />
+
+	<appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<charset>UTF-8</charset>
+			<Pattern>%d %-4relative [%thread] %-5level %logger{35} - %msg%n
+			</Pattern>
+		</encoder>
+	</appender>
+
+	<appender name="fileAppender"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${DEV_HOME}/application.log</file>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>%d{yyyy-MM-dd HH:mm:ss} - %msg%n</Pattern>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>${DEV_HOME}/archived/application.%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>10MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+			<!-- keep 30 days' worth of history -->
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+	</appender>
+
+	<appender name="fileErrorAppender"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${DEV_HOME}/error.log</file>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>%d{yyyy-MM-dd HH:mm:ss} - %msg%n</Pattern>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>${DEV_HOME}/archived/error.%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>10MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+			<!-- keep 30 days' worth of history -->
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+	</appender>
+
+	<!-- LOGGERS -->
+	<!-- Spring -->
+	<logger name="org.springframework" level="DEBUG">
+		<appender-ref ref="fileAppender" />
+		<appender-ref ref="consoleAppender" />
+	</logger>
+	<!-- Student Application -->
+	<logger name="com.sp" level="DEBUG" additivity="false">
+		<appender-ref ref="fileAppender" />
+		<appender-ref ref="consoleAppender" />
+	</logger>
+	<!-- Hibernate logging -->
+	<logger name="org.hibernate.type" level="ALL">
+		<appender-ref ref="fileAppender" />
+		<appender-ref ref="consoleAppender" />
+	</logger>
+	<logger name="org.hibernate" level="DEBUG">
+		<appender-ref ref="fileAppender" />
+		<appender-ref ref="consoleAppender" />
+	</logger>
+
+	<!-- Root Logger -->
+	<root level="DEBUG">
+		<appender-ref ref="fileAppender" />
+		<appender-ref ref="consoleAppender" />
+	</root>
+
+</configuration>
